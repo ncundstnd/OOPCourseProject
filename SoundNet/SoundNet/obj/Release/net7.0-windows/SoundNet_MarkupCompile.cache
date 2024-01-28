@@ -1,0 +1,20 @@
+﻿SoundNet
+
+
+winexe
+C#
+.cs
+C:\Study\Курсач ООП\SoundNet\SoundNet\obj\Release\net7.0-windows\
+SoundNet
+none
+false
+TRACE;RELEASE;NET;NET7_0;NETCOREAPP
+C:\Study\Курсач ООП\SoundNet\SoundNet\App.xaml
+18760766819
+11984015289
+31-1817180113
+2121273844811
+AddMusic.xaml;AdminPanel.xaml;AuthorProfilePage.xaml;ContentPage.xaml;CustomBlocks\AlbumBlock.xaml;CustomBlocks\AlbumMusicList.xaml;CustomBlocks\AuthorBlock.xaml;CustomBlocks\AuthorProfile.xaml;CustomBlocks\MusicBlock.xaml;CustomBlocks\PlaylistBlock.xaml;CustomBlocks\PlaylistMusicList.xaml;LibraryPage.xaml;MainAppWindow.xaml;MainPage.xaml;MainWindow.xaml;MusicPlayer.xaml;ProfilePage.xaml;SearchPage.xaml;
+
+True
+

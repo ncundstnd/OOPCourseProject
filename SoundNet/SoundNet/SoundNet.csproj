@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="CustomBlocks\AlbumBlock.xaml.cs" />
+    <Compile Remove="CustomBlocks\AuthorBlock.xaml.cs" />
+    <Compile Remove="CustomBlocks\MusicBlock.xaml.cs" />
+    <Compile Remove="CustomBlocks\PlaylistBlock.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\arrow.cur" />
+    <None Remove="Resources\BlackLogo.png" />
+    <None Remove="Resources\BlackLogo.svg" />
+    <None Remove="Resources\logo.jpg" />
+    <None Remove="Resources\logo.png" />
+    <None Remove="Resources\test.jpg" />
+    <None Remove="Resources\WhiteLogo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="CustomBlocks\AlbumBlock.xaml" />
+    <Page Remove="CustomBlocks\AuthorBlock.xaml" />
+    <Page Remove="CustomBlocks\MusicBlock.xaml" />
+    <Page Remove="CustomBlocks\PlaylistBlock.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
+    <PackageReference Include="TagLibSharp" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\arrow.cur">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\test.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CustomBlocks\" />
+  </ItemGroup>
+
+</Project>

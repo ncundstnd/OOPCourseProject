@@ -1,0 +1,208 @@
+﻿<Page x:Class="SoundNet.SearchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:uc="clr-namespace:SoundNet.Classes"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SearchPage">
+
+    <Page.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Width" Value="180" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Background" Value="#444" />
+            <Setter Property="Foreground" Value="#eee" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SelectButton" TargetType="Button" BasedOn="{StaticResource RoundedButtonStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9158ff" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#333" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Background" Value="#9158ff" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <uc:ByteToImageConverter x:Key="ByteToImageConverter" />
+
+        <!-- Определения ресурсов для AlbumTemplate, PlaylistTemplate, MusicTemplate -->
+        <DataTemplate x:Key="AlbumTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image MouseLeftButtonDown="Album_MouseLeftButtonDown" Grid.Column="0" Source="{Binding Image, Converter={StaticResource ByteToImageConverter}}" Tag="{Binding}" Width="200" Height="200" />
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Stretch">
+                        <TextBlock x:Name="AlbumId" Text="{Binding Id}" Visibility="Collapsed" />
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="#eee" FontSize="16" />
+                        <TextBlock Text="{Binding Genre}" FontStyle="Italic" Foreground="#ddd" />
+                        <TextBlock Visibility="Collapsed" Text="{Binding Description}" Foreground="#ddd" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding Author.Name}" Foreground="#ddd" FontWeight="Bold" />
+                        <TextBlock Visibility="Collapsed" Text="{Binding UploadDate, StringFormat='{}{0:dd/MM/yyyy}'}" Foreground="#ddd" />
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Button Visibility="Visible" x:Name="BtnChangeAlbum" Style="{StaticResource SelectButton}" Content="Изменить альбом" Click="BtnChangeAlbum_Click" />-->
+                            <!--<Button Visibility="Visible" x:Name="BtnDeleteAlbum" Style="{StaticResource SelectButton}" Content="Удалить альбом" Click="BtnDeleteAlbum_Click" />-->
+                            <Button x:Name="BtnAddAlbumToFavorites" Style="{StaticResource SelectButton}" Content="Добавить в избранное" Click="BtnAddAlbumToFavorites_Click_1" Tag="{Binding}"/>
+                            <!--<Button x:Name="BtnRemoveAlbumFromFavorites" Style="{StaticResource SelectButton}" Content="Удалить из избранного" Click="BtnRemoveAlbumFromFavorites_Click" />-->
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PlaylistTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image MouseLeftButtonDown="Playlist_MouseLeftButtonDown" Grid.Column="0" Source="{Binding Image, Converter={StaticResource ByteToImageConverter}}" Tag="{Binding}" Width="200" Height="200" />
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock x:Name="PlaylistId" Text="{Binding Id}" Visibility="Collapsed" />
+                        <TextBlock x:Name="testName" Text="{Binding Name}" FontWeight="Bold" Foreground="#eee" FontSize="16" />
+                        <TextBlock Text="{Binding Description}" Foreground="#ddd" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding Author.Name}" Foreground="#ddd" FontWeight="Bold" />
+                        <TextBlock Visibility="Collapsed" Text="{Binding UploadDate, StringFormat='{}{0:dd/MM/yyyy}'}" Foreground="#ddd" />
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Button Visibility="Visible" x:Name="BtnChangePlaylist" Style="{StaticResource SelectButton}" Content="Изменить плейлист" Click="BtnChangePlaylist_Click" />-->
+                            <!--<Button Visibility="Visible" x:Name="BtnDeletePlaylist" Style="{StaticResource SelectButton}" Content="Удалить плейлист" Click="BtnDeletePlaylist_Click" />-->
+                            <Button x:Name="BtnAddPlaylistToFavorites" Style="{StaticResource SelectButton}" Content="Добавить в избранное" Click="BtnAddPlaylistToFavorites_Click" Tag="{Binding}"/>
+                            <!--<Button x:Name="BtnRemovePlaylistFromFavorites" Style="{StaticResource SelectButton}" Content="Удалить из избранного" Click="BtnRemovePlaylistFromFavorites_Click" />-->
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MusicTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image MouseLeftButtonDown="Song_MouseLeftButtonDown" Grid.Column="0" Source="{Binding Image, Converter={StaticResource ByteToImageConverter}}" Tag="{Binding}" Width="200" Height="200" />
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock x:Name="MusicId" Text="{Binding Id}" Visibility="Collapsed" />
+                        <TextBlock x:Name="Name" Text="{Binding Name}" FontWeight="Bold" Foreground="#eee" FontSize="16" />
+                        <TextBlock Text="{Binding Genre}" FontStyle="Italic" Foreground="#ddd" />
+                        <TextBlock Text="{Binding User.Name}" Foreground="#ddd" FontWeight="Bold" />
+                        <TextBlock Visibility="Collapsed" Text="{Binding UploadDate, StringFormat='{}{0:dd/MM/yyyy}'}" Foreground="#ddd" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="BtnAddToFavorites" Style="{StaticResource SelectButton}" Content="Добавить в избранное" Click="BtnAddToFavorites_Click" Tag="{Binding}"/>
+                            <!--<Button x:Name="BtnRemoveFromFavorites" Style="{StaticResource SelectButton}" Content="Удалить из избранного" Click="BtnRemoveFromFavorites_Click" />-->
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="AuthorTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image MouseLeftButtonDown="Author_MouseLeftButtonDown"  Grid.Column="0" Source="{Binding Avatar, Converter={StaticResource ByteToImageConverter}}" Width="200" Height="200" Tag="{Binding}"/>
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="#eee" FontSize="16" />
+                        <TextBlock x:Name="AuthorId" Text="{Binding Id}" Visibility="Collapsed" />
+                        <TextBlock x:Name="AuthorLogin" Text="{Binding Login}" Visibility="Collapsed" />
+                        <TextBlock Text="{Binding LastName}" Foreground="#ddd"  FontSize="16" />
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Button Visibility="Visible" x:Name="BtnChangeAuthor" Style="{StaticResource SelectButton}" Content="Изменить пользователя" Click="BtnChangeAuthor_Click" />-->
+                            <!--<Button Visibility="Visible" x:Name="BtnDeleteAuthor" Style="{StaticResource SelectButton}" Content="Удалить пользователя" Click="BtnDeleteAuthor_Click" />-->
+                            <Button x:Name="BtnAddAuthorToFavorites" Style="{StaticResource SelectButton}" Content="Добавить в избранное" Click="BtnAddAuthorToFavorites_Click" Tag="{Binding}"/>
+                            <!--<Button x:Name="BtnRemoveAuthorFromFavorites" Style="{StaticResource SelectButton}" Content="Удалить из избранного" Click="BtnRemoveAuthorFromFavorites_Click" Tag="{Binding}"/>-->
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+
+        <uc:MediaTemplateSelector x:Key="MediaTemplateSelector"
+            AlbumTemplate="{StaticResource AlbumTemplate}"
+            PlaylistTemplate="{StaticResource PlaylistTemplate}"
+            MusicTemplate="{StaticResource MusicTemplate}"
+            AuthorTemplate="{StaticResource AuthorTemplate}" />
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Background" Value="#444" />
+            <Setter Property="Foreground" Value="#222" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+
+        <!-- Стиль для ComboBoxItem -->
+        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="#444" />
+            <Setter Property="Foreground" Value="#ddd" />
+            <Setter Property="Padding" Value="5" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#444" />
+                    <Setter Property="Foreground" Value="#222" />
+                    <Setter Property="BorderBrush" Value="#9158ff" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="#222" />
+                    <Setter Property="BorderBrush" Value="#9158ff" />
+                    <Setter Property="Background" Value="#444" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Grid Margin="0,30,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Для текстового блока -->
+            <RowDefinition Height="Auto" />
+            <!-- Для ComboBox -->
+            <RowDefinition Height="*" />
+            <!-- Для ListBox -->
+        </Grid.RowDefinitions>
+
+        <TextBlock Padding="10,0" FontSize="22" Foreground="#ddd" Margin="0,4,0,0">
+            Результаты поиска:
+        </TextBlock>
+
+        <!-- Добавление элементов управления для выбора типа фильтрации -->
+        <ComboBox x:Name="FilterComboBox" Style="{StaticResource ComboBoxStyle}" SelectedIndex="0" Grid.Row="1">
+            <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}">Все результаты</ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}">Плейлисты</ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}">Альбомы</ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}">Песни</ComboBoxItem>
+            <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}">Исполнители</ComboBoxItem>
+        </ComboBox>
+
+        <ListBox Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="#444" BorderThickness="0" Name="TestListBox"
+                 HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                 Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Page}}">
+            <ListBox.ItemTemplateSelector>
+                <StaticResource ResourceKey="MediaTemplateSelector" />
+            </ListBox.ItemTemplateSelector>
+        </ListBox>
+    </Grid>
+</Page>

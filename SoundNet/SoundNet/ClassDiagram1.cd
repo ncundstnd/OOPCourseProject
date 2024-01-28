@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SoundNet.EFCore.Entities.Albums" BaseTypeListCollapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAgAIAAAQAAACAABAAAABAAAAAAAA=</HashCode>
+      <FileName>EFCore\Entities\Albums.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.345" />
+  </Class>
+  <Class Name="SoundNet.EFCore.Entities.AlbumAudio">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAgAAAAAAAAAAAGAAAAAA=</HashCode>
+      <FileName>EFCore\Entities\Albums.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundNet.EFCore.Entities.FavoritesAlbum">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAgAgAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>EFCore\Entities\Albums.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundNet.EFCore.Entities.Audio" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAIAAAwAAACIABAAAAAAAEAAAAA=</HashCode>
+      <FileName>EFCore\Entities\Audio.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SoundNet.EFCore.Entities.FavoritesAudio">
+    <Position X="1.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>EFCore\Entities\Audio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundNet.EFCore.Entities.Playlists" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAgAAAAgAAAAAQAAACAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>EFCore\Entities\Playlists.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SoundNet.EFCore.Entities.PlaylistAudio">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>EFCore\Entities\Playlists.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundNet.EFCore.Entities.FavoritesPlaylist">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAARAAAAAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EFCore\Entities\Playlists.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundNet.EFCore.Entities.User">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAAAAAGAgAAAAEAQAAAQAAgAAAAACAAAULUAAAAg=</HashCode>
+      <FileName>EFCore\Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundNet.EFCore.Entities.UserSubscription">
+    <Position X="1.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAUIAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EFCore\Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

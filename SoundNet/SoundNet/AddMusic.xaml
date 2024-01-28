@@ -1,0 +1,96 @@
+﻿<Window x:Class="SoundNet.AddMusic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Добавление песни" MinHeight="500" MinWidth="700" MaxHeight="500" MaxWidth="700">
+    <Window.Resources>
+        <Style x:Key="RoundedTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="36" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="MaxLength" Value="32" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="Background" Value="#444" />
+            <Setter Property="Foreground" Value="#eee" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Background" Value="#444" />
+            <Setter Property="Foreground" Value="#eee" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Триггер для кнопок -->
+        <Style x:Key="SelectButton" TargetType="Button" BasedOn="{StaticResource RoundedButtonStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9158ff" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#333">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,19,0,0">
+            <TextBlock FontSize="32" Foreground="#eee" FontWeight="Bold" Margin="0,0,0,20">
+               Добавьте информацию о песне
+            </TextBlock>
+
+            <!-- Используем Binding для отображения свойств пользователя -->
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Название" Foreground="#eee"  FontSize="16" />
+                    <TextBox x:Name="NameTextBox" Style="{StaticResource RoundedTextBoxStyle}" />
+                </StackPanel>
+                <StackPanel Margin="30,0,0,0" Width="260">
+                    <Label Content="Жанр" Foreground="#eee"  FontSize="16" />
+                    <ComboBox Height="30" FontSize="16" x:Name="GenreComboBox" Margin ="10,12,10,10" />
+                    <!--<TextBox x:Name="GenreTextBox" Style="{StaticResource RoundedTextBoxStyle}" />-->
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Изображение" Foreground="#eee" FontSize="16" />
+                    <TextBox x:Name="ImagePathTextBox" Style="{StaticResource RoundedTextBoxStyle}" IsReadOnly="True" />
+                </StackPanel>
+
+                <Button Margin="60,30,0,0" x:Name="UploadImageButton" Style="{StaticResource SelectButton}" Content="Добавить обложку" Click="UploadImageButton_Click" Height="34" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Аудиофайл" Foreground="#eee" FontSize="16" />
+                    <TextBox x:Name="AudioPathTextBox" Style="{StaticResource RoundedTextBoxStyle}" IsReadOnly="True" />
+                </StackPanel>
+
+                <Button Margin="60,30,0,0" x:Name="UploadAudioButton" Style="{StaticResource SelectButton}" Content="Добавить аудиофайл" Click="UploadAudioButton_Click" Height="34" />
+            </StackPanel>
+        </StackPanel>
+        <Button HorizontalAlignment="Center" Margin="0,400,0,0"  x:Name="AddMusicButton" Style="{StaticResource SelectButton}" Content="Опубликовать песню" Click="AddMusic_Click" Height="44" Width="272" VerticalAlignment="Top" />
+    </Grid>
+</Window>

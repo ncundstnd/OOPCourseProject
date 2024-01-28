@@ -1,0 +1,151 @@
+﻿<Window x:Class="SoundNet.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="SoundNet" MinWidth="1000" MinHeight="800" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <!-- Стиль для скругления углов TextBox -->
+        <Style x:Key="RoundedTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="36" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="MaxLength" Value="32" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="Background" Value="#444" />
+            <Setter Property="Foreground" Value="#eee" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для скругления углов PasswordBox -->
+        <Style x:Key="RoundedPasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="Height" Value="36" />
+            <Setter Property="Width" Value="300" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="MaxLength" Value="32" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="Background" Value="#444" />
+            <Setter Property="Foreground" Value="#eee" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для скругления углов Button -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Background" Value="#444" />
+            <Setter Property="Foreground" Value="#eee" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Триггер для кнопок -->
+        <Style x:Key="SelectButton" TargetType="Button" BasedOn="{StaticResource RoundedButtonStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9158ff" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#333333">
+        <TextBlock Text="SoundNet" Foreground="#9158ff" FontSize="60" FontWeight="Bold" Margin="0,20,0,20" HorizontalAlignment="Center" />
+        <!-- Вход/Регистрация -->
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20,110,20,20">
+            <!-- Вход/Регистрация -->
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="20">
+                <Button x:Name="SelectLoginButton" Style="{StaticResource RoundedButtonStyle}" Height="30" Width="150" FontSize="16" Content="Вход" Margin="0,0,10,20" VerticalAlignment="Center" Click="SelectLoginButton_Click" />
+                <Button x:Name="SelectRegisterButton" Style="{StaticResource RoundedButtonStyle}" Height="30" Width="150" FontSize="16" Content="Регистрация" Margin="25,0,10,20" VerticalAlignment="Center" Click="SelectRegisterButton_Click" />
+            </StackPanel>
+        </WrapPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+
+            <!-- Поля для входа -->
+            <StackPanel x:Name="LoginPanel" Visibility="Visible">
+                <StackPanel>
+                    <Label Content="Логин" Foreground="#eee" FontSize="16" />
+                    <TextBox x:Name="LoginUsernameTextBox" Style="{StaticResource RoundedTextBoxStyle}" />
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Пароль" Foreground="#eee"  FontSize="16" />
+                    <PasswordBox KeyDown="LoginPasswordBox_KeyDown" x:Name="LoginPasswordBox" Style="{StaticResource RoundedPasswordBoxStyle}" />
+                </StackPanel>
+                <Button x:Name="LoginButton" BorderThickness="2" Margin="0,15,0,0" Content="Войти" Style="{StaticResource SelectButton}" Click="LoginButton_Click" />
+            </StackPanel>
+
+            <!-- Поля для регистрации -->
+            <StackPanel x:Name="RegisterPanel" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <Label Content="Логин" Foreground="#eee"  FontSize="16" />
+                        <TextBox x:Name="RegisterUsernameTextBox" Style="{StaticResource RoundedTextBoxStyle}" />
+                    </StackPanel>
+
+                    <StackPanel Margin="10,0,0,0">
+                        <Label Content="Пароль" Foreground="#eee"  FontSize="16" />
+                        <PasswordBox x:Name="RegisterPasswordBox" Style="{StaticResource RoundedPasswordBoxStyle}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <StackPanel>
+                        <Label Content="Имя" Foreground="#eee"  FontSize="16" />
+                        <TextBox x:Name="FirstNameTextBox" Style="{StaticResource RoundedTextBoxStyle}" />
+                    </StackPanel>
+
+                    <StackPanel Margin="10,0,0,0">
+                        <Label Content="Фамилия" Foreground="#eee"  FontSize="16" />
+                        <TextBox x:Name="LastNameTextBox" Style="{StaticResource RoundedTextBoxStyle}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <StackPanel>
+                        <Label Content="Электронная почта" Foreground="#eee"  FontSize="16" />
+                        <TextBox x:Name="EmailTextBox" Style="{StaticResource RoundedTextBoxStyle}" />
+                    </StackPanel>
+
+                    <StackPanel Margin="10,0,0,0">
+                        <Label Content="Номер телефона" Foreground="#eee"  FontSize="16" />
+                        <TextBox x:Name="PhoneNumberTextBox" Style="{StaticResource RoundedTextBoxStyle}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Button x:Name="RegisterButton" BorderThickness="2" Margin="0,15,0,0" Content="Зарегистрироваться" Style="{StaticResource SelectButton}" Click="RegisterButton_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

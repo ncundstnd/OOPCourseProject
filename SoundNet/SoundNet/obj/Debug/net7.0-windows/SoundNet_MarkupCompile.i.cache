@@ -1,0 +1,20 @@
+﻿SoundNet
+1.0.0.0
+
+winexe
+C#
+.cs
+C:\Study\Курсач ООП\SoundNet\SoundNet\obj\Debug\net7.0-windows\
+SoundNet
+none
+false
+TRACE;DEBUG;NET;NET7_0;NETCOREAPP
+C:\Study\Курсач ООП\SoundNet\SoundNet\App.xaml
+19-394036800
+
+36240389658
+213112146485
+AddAlbum.xaml;AddMusic.xaml;AddPlaylist.xaml;AdminPanel.xaml;AlbumMusicList.xaml;AuthorProfilePage.xaml;ChangeAlbum.xaml;ChangeMusic.xaml;ChangePlaylist.xaml;ChangeUser.xaml;ContentPage.xaml;LibraryPage.xaml;MainAppWindow.xaml;MainPage.xaml;MainWindow.xaml;MusicPlayer.xaml;PlaylistMusicList.xaml;ProfilePage.xaml;SearchPage.xaml;
+
+False
+
